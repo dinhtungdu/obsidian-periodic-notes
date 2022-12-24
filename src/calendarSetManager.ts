@@ -2,6 +2,7 @@ import type { DailyNotesSettings } from "obsidian";
 import type PeriodicNotesPlugin from "src/main";
 import { get } from "svelte/store";
 
+import { setActiveSet } from "./settings/utils";
 import {
   granularities,
   type CalendarSet,
@@ -154,5 +155,9 @@ export default class CalendarSetManager {
 
       return settings;
     });
+  }
+  
+  public setActiveCalendarSet(calendarSetId: string): void {
+    this.plugin.settings.update(setActiveSet(calendarSetId));
   }
 }
